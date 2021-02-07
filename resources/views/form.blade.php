@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Page</title>
+    <title>Form</title>
     <style>
         .gradient-custom {
             /* fallback for old browsers */
@@ -38,51 +38,29 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 </head>
 <body class="gradient-custom">
-    <div class="card container " style="width: 30rem; height: 25rem; margin-top: 10%; border-radius: 10px">
-        <form class="card-body text-center" action="#" method="POST" id="formT">
-            {!! csrf_field() !!}
+    <div class="card container " style="width: 25rem; height: 20rem; margin-top: 10%; border-radius: 10px">
+        <form class="card-body text-center" method="get" action="https://paygateglobal.com/v1/page">
             <h4 class="mb-3">Wifi Zone</h4>
             <p class="card-text text-info">
                 Profitez d'une connexion internet haut débit à des frais abordables.
             </p>
-            @csrf
+            
             <div class="form-outline" style="margin-top: 10%">
-                <input type="text" id="numbers" class="form-control" name="numbers" placeholder="Entrez votre numero de téléphone"/>
-            </div>
-            <div class="form-outline" style="margin-top: 10%">
-                <select id="form2" class="form-control">
-                    <option value="1">1h/200Frs</option>
-                    <option value="2">2h/300Frs</option>
-                    <option value="3">3h/500Frs</option>
-                    <option value="3">10h/1000Frs</option>
-                </select>
+                <input type="text" name="token" value="22ac309e-bd06-466d-a46b-caf580cdcbe8" hidden>
+                    <select name="amount" class="browser-default custom-select">
+                        <option value="100">1h/200Fr</option>
+                        <option value="300">2h/300Fr</option>
+                        <option value="500">3h/500Fr</option>
+                        <option value="1000">10h/1000Fr</option>
+                    </select>
+                <input type="text" name="description" value="wifiPayement" hidden/>
+                <input type="text" name="identifier" value="<?php echo $identifier=substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'),1,7);?>" hidden/>
+                
             </div>
             <div class="form-outline" style="margin-top: 5%">
-                <button type="button" type="submit" class="btn btn-primary pulse">Envoyer</button>
+                <button type="submit" class="btn btn-primary pulse">Envoyer</button>
             </div>
         </form>
     </div>
-    <script>
-        $(document).ready(function() {
-            $(document).on('formT', '#reg-form', function(e) {
-            var data = $("#reg-form").serialize();
-            e.preventDefault();
-                $.ajax({
-                    type: 'POST',
-                    url: '{{url("/")}}',
-                    data: data,
-                    success: function(data) {
-                     alert("success");
-                     console.log(data);
-     
-                    },
-                    error: function(data) {
-                        alert("error");
-                    }
-                });
-                return false;
-            });
-        });
-    </script>
 </body>
 </html>

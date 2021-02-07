@@ -16,11 +16,6 @@ use Symfony\Component\Console\Input\Input;
 */
 
 Route::get('/', function () {
-    return view('page');
+    return view('form');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/', 'PageController@tryIt');
